@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  db:
+    build: .
+    container_name: anywhere17-backupdb
+    ports:
+      - "${SQLANYWHERE_DB_PORT:-2638}:2638"
+    volumes:
+      - ./db:/db
+    environment:
+      - SQLANYWHERE_DB_ENGINE_NAME=${DB_ENGINE_NAME:-server}
+      - SQLANYWHERE_DB_FILE=${DB_FILE:-database.db}
+    command:
+      - dbsrv17
+      - -n
+      - "${SQLANYWHERE_DB_ENGINE_NAME}"
+      - "/db/${SQLANYWHERE_DB_FILE}"
+
+# .env example:
+# SQLANYWHERE_DB_ENGINE_NAME=server
+# SQLANYWHERE_DB_FILE=database.db
+# SQLANYWHERE_DB_PORT=2638

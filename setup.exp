@@ -1,0 +1,57 @@
+#!/usr/bin/expect -f
+set timeout -1
+spawn ./sqlany17/setup
+
+expect "Press ENTER to continue"
+send "\r"
+
+expect "Please select the number for your country or region and press ENTER:"
+send "30\r"
+
+expect -glob "LICENSE AGREEMENT"
+send "q"
+
+expect "I AGREE to the terms of the SAP license, for the install location specified"
+send "Y\n"
+
+expect "Choice"
+send "1\r"
+
+expect -glob "If you don't have a registration key, press ENTER*"
+send "\r"
+
+expect -glob "Please re-enter your registration key*"
+send "\r"
+
+expect -glob "PRODUCT SPECIFIC LICENSE TERMS*"
+send "q"
+
+expect -glob "Press Y to accept or N to refuse*"
+send "Y\r"
+
+expect -glob "Choice:*"
+send "S\r"
+
+expect -glob "Please enter the installation directory*"
+send "\r"
+
+expect -glob "Are you satisfied with the settings?*"
+send "Y\r"
+
+expect -glob "Do you wish to add Applications menu items for SQL Anywhere 17?*"
+send "N\r"
+
+expect -glob "Would you like to create a desktop shortcut for SQL Central now?*"
+send "N\r"
+
+expect -glob "Please hit ENTER to start*"
+send "\r\r"
+
+expect -glob "Would you like to check for updates now?*"
+send "N\r"
+
+expect -glob "Would you like to review the Read Me file?*"
+send "qN\r"
+
+interact
+#expect eof
