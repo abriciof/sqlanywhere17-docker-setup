@@ -51,7 +51,7 @@ expect -glob "Would you like to check for updates now?*"
 send "N\r"
 
 expect -glob "Would you like to review the Read Me file?*"
-send "qN\r"
+send "N\r"
 
 interact
-#expect eof
+expect eof
